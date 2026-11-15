@@ -1,11 +1,4 @@
-# PSI-Microcontroladores2-Aula06
-Atividade: Resolução de Race Condition com Semáforo ou Mutex
-
-## 🎯 Objetivos da Atividade
-Nesta atividade, os alunos deverão:
-- Criar um código (linguagem livre) que apresenta **condições de corrida (race conditions)** (uso liberado de IA generativa).
-- Trabalhar em **duplas**, com **avaliação cruzada interna** entre os integrantes do grupo (não deve usar IA generativa).
-- Aplicar **testes estruturados** com pré-condição, etapas de teste e pós-condição (não deve usar IA generativa).
+tes estruturados** com pré-condição, etapas de teste e pós-condição (não deve usar IA generativa).
 - Demonstrar como o problema de concorrência foi **identificado e resolvido** com uso de semáforo ou mutex (não deve usar IA generativa).
 
 ## 🧠 Etapas da Atividade
