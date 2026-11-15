@@ -7,7 +7,7 @@ Link Repositório Ingrid: https://github.com/infriglide/PSI-Microcontroladores2-
 **Cenário 1: Contador**
 
 1.1 Race condition: as duas threads leem o mesmo valor de contado, cedem a CPU e escrevem temp + 1, sobrescrevendo uma à outra. Cada par de incrementos soma só 1. Com N = 1000, saída.
-
+Os parametros de testes foram: 10, 100 e 100;
 Esperado: 2000 | Obtido: 1000. O erro ocorreria sempre que as duas leem antes de qualquer uma escrever.
 
  Solução do Cenário 1:
@@ -20,6 +20,7 @@ https://github.com/infriglide/PSI-Microcontroladores2-Aula06/tree/main/evidencia
 **Cenário 2: Saque**
 
 2.1 Race condition: cada thread verifica saldo >= 80 e depois subtrai 80. Com saldo 100, as duas passam na verificação antes de qualquer subtração e o saldo termina em -60. Com saldos que cobrem os dois saques, o erro não aparece.
+Os parametros de testes foram: 100, 200 e 2000;
 
 Solução do Cenário 2:
 Foi adicionado: mutex cobrindo a verificação e a subtração, então a segunda thread só verifica depois que a primeira terminou.
