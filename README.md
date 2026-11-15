@@ -1,53 +1,38 @@
-tes estruturados** com pré-condição, etapas de teste e pós-condição (não deve usar IA generativa).
-- Demonstrar como o problema de concorrência foi **identificado e resolvido** com uso de semáforo ou mutex (não deve usar IA generativa).
+Race Conditions com Mutex
+Integrantes: Ingrid Oliveira e Giovanna Santana
+Link Repositório Ingrid: https://github.com/infriglide/PSI-Microcontroladores2-Aula06
 
-## 🧠 Etapas da Atividade
 
-### **1️⃣ Criação do Código Anterior**
-- Cada integrante do grupo deverá **criar um código**, e **executar o código do colega** que contém uma race condition.
-- Documentar:
-  - O comportamento incorreto observado.
-  - O momento em que o erro ocorre (condição específica, sequência de eventos, etc.).
 
-### **2️⃣ Planejamento de Testes**
-Para cada cenário, descreva **três casos de teste** seguindo o formato abaixo:
+**Cenário 1: Contador**
 
-| Caso de Teste | Pré-condição | Etapas de Teste | Pós-condição Esperada |
-|----------------|---------------|------------------|------------------------|
-| 1 | ... | ... | ... |
-| 2 | ... | ... | ... |
-| 3 | ... | ... | ... |
+1.1 Race condition: as duas threads leem o mesmo valor de contado, cedem a CPU e escrevem temp + 1, sobrescrevendo uma à outra. Cada par de incrementos soma só 1. Com N = 1000, saída.
 
-### **3️⃣ Correção e Reteste**
-- Corrigir o código para **eliminar a race condition** usando semáforo ou mutex.
-- Reexecutar **os mesmos casos de teste** e registrar:
-  - As mudanças feitas, justificando sua escolha pelo mutex ou semáforo.
-  - O resultado após a correção com evidências (capturas de tela por exemplo).
+Esperado: 2000 | Obtido: 1000. O erro ocorreria sempre que as duas leem antes de qualquer uma escrever.
 
-### **4️⃣ Avaliação Interna (entre colegas do mesmo grupo)**
-Cada integrante deverá:
-1. Criar o código de race condition.
-2. Executar o código original do colega conforme os testes planejados.
-3. Executar o código corrigido do colega conforme os testes planejados.  
-4. Registrar uma **avaliação curta** (pode ser no final do README):
-   - O que estava errado antes.  
-   - O que mudou com a correção.
-   - Se o comportamento agora é estável.  
+ Solução do Cenário 1:
+ Foi adicionado: mutex (K_MUTEX_DEFINE) cobrindo leitura e escrita juntos.
 
-## 📦 Entregáveis
+Evidências: as evidências podem ser encontrados na pasta evidências do repositório: 
+https://github.com/infriglide/PSI-Microcontroladores2-Aula06/tree/main/evidencias
 
-No repositório da dupla, incluir:
-1. `README.md` (este arquivo) contendo:
-   - Nomes dos integrantes.
-   - 2 Cenários escolhidos.
-   - 6 Casos de teste.
-   - Descrição das 2 race conditions e das soluções.
-   - 2 Avaliações cruzadas.
-2. Código-fonte organizado (considerando um código original e um corrigido por cada integrante, então 4 subpastas no total):
-   - `codigo_original/`
-   - `codigo_corrigido/`
-3. Evidências (prints, logs, vídeos curtos, etc.) da execução dos testes.
 
----
+**Cenário 2: Saque**
 
-**Entrega:** um PDF do markdown final (com o link do repositório aberto) no Moodle.
+2.1 Race condition: cada thread verifica saldo >= 80 e depois subtrai 80. Com saldo 100, as duas passam na verificação antes de qualquer subtração e o saldo termina em -60. Com saldos que cobrem os dois saques, o erro não aparece.
+
+Solução do Cenário 2:
+Foi adicionado: mutex cobrindo a verificação e a subtração, então a segunda thread só verifica depois que a primeira terminou.
+
+**Mutex e Não Semáforo:**
+O problema é exclusão mútua: só uma thread por vez na seção crítica, e quem trava é quem libera. O mutex tem dono e herança de prioridade no Zephyr. Um semáforo binário também funcionaria, mas é mais indicado para sinalização entre threads.
+
+
+
+Avaliação Cruzada:
+
+
+
+
+
+
