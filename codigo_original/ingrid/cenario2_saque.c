@@ -2,7 +2,7 @@
 #include <sys/printk.h>
 #include <stdint.h>
 
-#define SALDO_INICIAL 100
+#define SALDO_INICIAL 2000
 #define VALOR_SAQUE 80
 #define STACK_SIZE 1024
 
