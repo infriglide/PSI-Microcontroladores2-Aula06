@@ -1,39 +1,127 @@
-Race Conditions com Mutex
-Integrantes: Ingrid Oliveira e Giovanna Santana
-Link Repositório Ingrid: https://github.com/infriglide/PSI-Microcontroladores2-Aula06
+# Resolução de Race Condition com Semáforo ou Mutex - Ingrid, Giovanna e Gean
+
+## 1. CRIAÇÃO DE CÓDIGO E AVALIAÇÃO CRUZADA
+
+### Análise do código da Ingrid (feita pela Giovanna)
+(espaço para documentar: o que ele faz, o comportamento incorreto observado e o momento em que o erro ocorre)
 
 
-
-**Cenário 1: Contador**
-
-1.1 Race condition: as duas threads leem o mesmo valor de contado, cedem a CPU e escrevem temp + 1, sobrescrevendo uma à outra. Cada par de incrementos soma só 1. Com N = 1000, saída.
-Os parametros de testes foram: 10, 100 e 100;
-Esperado: 2000 | Obtido: 1000. O erro ocorreria sempre que as duas leem antes de qualquer uma escrever.
-
- Solução do Cenário 1:
- Foi adicionado: mutex (K_MUTEX_DEFINE) cobrindo leitura e escrita juntos.
-
-Evidências: as evidências podem ser encontrados na pasta evidências do repositório: 
-https://github.com/infriglide/PSI-Microcontroladores2-Aula06/tree/main/evidencias
+### Análise do código da Giovanna (feito pelo Gean)
+(espaço para documentar: o que ele faz, o comportamento incorreto observado e o momento em que o erro ocorre)
 
 
-**Cenário 2: Saque**
+### Análise do código do Gean (feita pela Ingrid)
+(espaço para documentar: o que ele faz, o comportamento incorreto observado e o momento em que o erro ocorre)
 
-2.1 Race condition: cada thread verifica saldo >= 80 e depois subtrai 80. Com saldo 100, as duas passam na verificação antes de qualquer subtração e o saldo termina em -60. Com saldos que cobrem os dois saques, o erro não aparece.
-Os parametros de testes foram: 100, 200 e 2000;
+## 2. PLANEJAMENTO DE TESTES
 
-Solução do Cenário 2:
-Foi adicionado: mutex cobrindo a verificação e a subtração, então a segunda thread só verifica depois que a primeira terminou.
+### Planejamento de testes do código da Ingrid (feita pela Giovanna)
+**Pré-condição para todos os testes**: (......)
 
-**Mutex e Não Semáforo:**
-O problema é exclusão mútua: só uma thread por vez na seção crítica, e quem trava é quem libera. O mutex tem dono e herança de prioridade no Zephyr. Um semáforo binário também funcionaria, mas é mais indicado para sinalização entre threads.
+**Teste 1**
+(.....)
+
+**Teste 2**
+(.....)
+
+**Teste 3**
+(......)
+
+### Planejamento de testes do código da Giovanna (feito pelo Gean)
+**Pré-condição para todos os testes**: (......)
+
+**Teste 1**
+(.....)
+
+**Teste 2**
+(.....)
+
+**Teste 3**
+(......)
+
+### Planejamento de testes do código do Gean (feito pela Ingrid)
+**Pré-condição para todos os testes**: (......)
+
+**Teste 1**
+(.....)
+
+**Teste 2**
+(.....)
+
+**Teste 3**
+(......)
+
+## 3. CORREÇÃO E RETESTE
+
+### Planejamento de testes do código da Ingrid (feita pela Giovanna)
+**Pré-condição para todos os testes**: (......)
+
+**Teste 1**
+(.....)
+
+**Teste 2**
+(.....)
+
+**Teste 3**
+(......)
+
+### Planejamento de testes do código da Giovanna (feito pelo Gean)
+**Pré-condição para todos os testes**: (......)
+
+**Teste 1**
+(.....)
+
+**Teste 2**
+(.....)
+
+**Teste 3**
+(......)
+
+### Planejamento de testes do código do Gean (feito pela Ingrid)
+**Pré-condição para todos os testes**: (......)
+
+**Teste 1**
+(.....)
+
+**Teste 2**
+(.....)
+
+**Teste 3**
+(......)
+
+## 4. AVALIAÇÃO INTERNA
+
+### Avaliação (Ingrid) 
+
+**O que estava errado antes?**
+(.....)
+
+**O que mudou com a correção?**
+(.....)
+
+**O comportamento agora é estável?**
+(.....)
 
 
+### Avaliação (Giovanna)
 
-Avaliação Cruzada:
+**O que estava errado antes?**
+(.....)
+
+**O que mudou com a correção?**
+(.....)
+
+**O comportamento agora é estável?**
+(.....)
 
 
+### Avaliação (Gean)
 
+**O que estava errado antes?**
+(.....)
 
+**O que mudou com a correção?**
+(.....)
 
-
+**O comportamento agora é estável?**
+(.....)
